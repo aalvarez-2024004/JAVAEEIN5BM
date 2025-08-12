@@ -1,0 +1,118 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
+ */
+package Controlador;
+
+import Modelo.Empleado;
+import Modelo.EmpleadoDAO;
+import java.io.IOException;
+import java.io.PrintWriter;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+/**
+ *
+ * @author informatica
+ */
+public class Validar extends HttpServlet {
+
+    EmpleadoDAO empleadoDAO = new EmpleadoDAO();
+    Empleado empleado = new Empleado();
+    
+    /**
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+    
+    
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
+        try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet Validar</title>");            
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet Validar at " + request.getContextPath() + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
+        }
+    }
+
+    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+    /**
+     * Handles the HTTP <code>GET</code> method.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+    }
+
+    /**
+     * Handles the HTTP <code>POST</code> method.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        
+        // Capturar la petición del usuario
+        String btnIngresar = request.getParameter("btnIngresar");
+        
+        if (btnIngresar != null && btnIngresar.equalsIgnoreCase("Ingresar")) {
+            String correo = request.getParameter("txtCorreo");
+            String pass = request.getParameter("txtContrasena");
+
+            empleado = empleadoDAO.validar(correo, pass);
+
+            if (empleado.getEmailEmpleado() != null) {
+                
+                // Guardar todos los datos del empleado en la sesion
+                request.getSession().setAttribute("usuario", empleado);
+                
+                //Si el usuario es valido, entonces se le redirige al menu principal
+                request.getRequestDispatcher("Controlador?menu=Principal").forward(request, response);
+            } else {
+                // Si el usuario no es valido
+                response.setContentType("text/html;charset=UTF-8");
+                response.getWriter().println("<script type='text/javascript'>");
+                response.getWriter().println("alert('Usuario o contraseña incorrectos');");
+                response.getWriter().println("location='index.jsp';");
+                response.getWriter().println("</script>");
+            }
+        } else {
+            request.getRequestDispatcher("index.jsp").forward(request, response);
+        }
+    }
+
+    /**
+     * Returns a short description of the servlet.
+     *
+     * @return a String containing servlet description
+     */
+    @Override
+    public String getServletInfo() {
+        return "Short description";
+    }// </editor-fold>
+
+}
