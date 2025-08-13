@@ -96,5 +96,6 @@ public class EmpleadoDAO {
         return resp;
     }
 
+    //Metodo que permitira hacer que se pueda ingrsar un nuevo empleado
     
 }

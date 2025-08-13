@@ -83,8 +83,8 @@ nav .logo {
   border-radius: var(--border-radius);
   padding: 20px;
   margin: 20px;
-  width: 98%;  /* Aumentado de 95% a 98% */
-  max-width: 1500px;  /* Aumentado de 1300px a 1500px */
+  width: 100%;  /* Aumentado de 95% a 98% */
+  max-width: 2000px;  /* Aumentado de 1300px a 1500px */
   gap: 20px;
   box-shadow: 0 20px 50px var(--shadow-color);
   backdrop-filter: blur(15px);
@@ -287,21 +287,22 @@ button.btn-eliminar:hover {
 
 /* Panel de tabla */
 .table-container {
-  opacity: 0;
-  transform: translateY(20px);
-  animation: fadeInUp 0.6s ease-out forwards 0.2s;
-  flex: 1.8;
-  background-color: var(--table-background);
-  padding: 20px;
-  border-radius: var(--border-radius);
-  backdrop-filter: blur(15px);
-  box-shadow: 0 10px 30px var(--shadow-color);
-  overflow: hidden;
-  transition: var(--transition);
-  position: relative;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  transform: translateZ(20px);
-  align-self: flex-start;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.6s ease-out forwards 0.2s;
+    flex: 4.2;
+    background-color: var(--table-background);
+    padding: 20px;
+    border-radius: var(--border-radius);
+    backdrop-filter: blur(15px);
+    box-shadow: 0 10px 30px var(--shadow-color);
+    overflow: hidden;
+    transition: var(--transition);
+    position: relative;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transform: translateZ(20px);
+    align-self: flex-start;
+    width: 100%; /* Asegura que ocupe todo el ancho disponible */
 }
 
 .table-container:hover {
@@ -312,14 +313,25 @@ button.btn-eliminar:hover {
 .table-responsive {
     width: 100%;
     overflow-x: auto;
-    -webkit-overflow-scrolling: touch; /* Para suavizar el scroll en dispositivos móviles */
+    -webkit-overflow-scrolling: touch;
     margin-bottom: 20px;
+    border-radius: 15px;
 }
 
 .table-responsive table {
     width: 100%;
-    min-width: 600px; /* Asegura que la tabla tenga un ancho mínimo */
+    min-width: 1700px; /* Ancho mínimo para acomodar todos los datos */
     border-collapse: collapse;
+    background-color: rgba(30, 30, 30, 0.8);
+    color: var(--text-color);
+    font-family: 'Segoe UI', sans-serif;
+    border-radius: 15px;
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 10px 30px var(--shadow-color);
+    position: relative;
+    transform: translateZ(10px);
+    table-layout: auto; /* Permite que las columnas se ajusten al contenido */
 }
 
 table {
@@ -339,13 +351,13 @@ table {
   transform: translateZ(10px);
 }
 
-thead {
-  background-color: rgba(212, 176, 103, 0.9);
-  color: white;
-  font-weight: bold;
-  position: sticky;
-  top: 0;
-  z-index: 10;
+th, td {
+    padding: 12px;
+    white-space: normal; /* Permite que el texto se ajuste en varias líneas */
+    word-break: break-word; /* Rompe palabras largas si es necesario */
+    min-width: 120px;
+    text-align: left;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 th, td {
@@ -357,10 +369,48 @@ th, td {
 }
 
 th {
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 0.9rem;
 }
+
+/* Estilo para los botones de acciones en la tabla */
+.table-responsive table td button {
+    padding: 8px 12px;
+    margin: 3px;
+    border: none;
+    border-radius: 50px; /* Bordes redondeados como en tus otros botones */
+    font-weight: 600;
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: var(--transition);
+    box-shadow: 0 4px 8px var(--shadow-color);
+    backdrop-filter: blur(5px);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Botón Actualizar */
+.table-responsive table td button[name="accion"][value="Actualizar"] {
+    background-image: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+    color: var(--text-color);
+    min-width: 50px; /* Ancho mínimo para mantener consistencia */
+}
+
+
+/* Botón Eliminar */
+.table-responsive table td button[name="accion"][value="Eliminar"] {
+    background-color: #e62222;
+    color: var(--text-color);
+    min-width: 50px; /* Ancho mínimo para mantener consistencia */
+}
+
+
+
 
 .marca-interna {
   margin-top: 20px;

@@ -35,9 +35,9 @@
 
                 <div class="botones">
                     <button type="submit" name="accion" class="agregar" value="Agregar">Agregar</button>
-                    <button type="submit" name="accion" class="actualizar">Actualizar</button>
+                    
                     <button type="submit" name="accion" class="buscar">Buscar</button>
-                    <button type="submit" name="accion" class="eliminar">Eliminar</button>
+                    
                 </div>
             </form>
             
@@ -47,33 +47,42 @@
         </div>
 
         <div class="table-container">
-            <table>
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Nombre</th>
-                        <th>Apellido</th>
-                        <th>Dirección</th>
-                        <th>Teléfono</th>
-                        <th>Email</th>
-                        <th>Puesto</th>
-                        <th>Acciones</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <c:forEach var="empleado" items="${empleados}">
+            <div class="table-responsive"> <!-- Contenedor responsivo -->
+                <table>
+                    <thead>
                         <tr>
-                            <td>${empleado.getCodigoEmpleado()}</td>
-                            <td>${empleado.getNombreEmpleado()}</td>
-                            <td>${empleado.getApellidoEmpleado()}</td>
-                            <td>${empleado.getDireccionEmpleado()}</td>
-                            <td>${empleado.getTelefonoEmpleado()}</td>
-                            <td>${empleado.getEmailEmpleado()}</td>
-                            <td>${empleado.getPuestoEmpleado()}</td>
+                            <th>ID</th>
+                            <th>Nombre</th>
+                            <th>Apellido</th>
+                            <th>Dirección</th>
+                            <th>Teléfono</th>
+                            <th>Email</th>
+                            <th>Puesto</th>
+                            <th>Actualizar</th>
+                            <th>Eliminar</th>
                         </tr>
-                    </c:forEach>
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        <c:forEach var="empleado" items="${empleados}">
+                            <tr>
+                                <td>${empleado.codigoEmpleado}</td>
+                                <td>${empleado.nombreEmpleado}</td>
+                                <td>${empleado.apellidoEmpleado}</td>
+                                <td>${empleado.direccionEmpleado}</td>
+                                <td>${empleado.telefonoEmpleado}</td>
+                                <td>${empleado.emailEmpleado}</td>
+                                <td>${empleado.puestoEmpleado}</td>
+                                <td>
+                                   <button type="submit" name="accion" class="actualizar">Actualizar</button>
+                                </td>
+                                <td>
+                                   <button type="submit" name="accion" class="eliminar">Eliminar</button>
+                                </td>
+                            </tr>
+                        </c:forEach>
+                    </tbody>
+                </table>
+            </div>
         </div>
 
     </div>
