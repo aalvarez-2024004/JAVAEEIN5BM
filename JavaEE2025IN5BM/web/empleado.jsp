@@ -53,8 +53,9 @@
                         <th>Apellido</th>
                         <th>Dirección</th>
                         <th>Teléfono</th>
-                        <th>Correo Electrónico</th>
+                        <th>Email</th>
                         <th>Puesto</th>
+                        <th>Acciones</th>
                     </tr>
                 </thead>
                 <tbody>

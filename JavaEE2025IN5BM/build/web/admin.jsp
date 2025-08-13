@@ -46,8 +46,6 @@
     <div class="contenido">
         <iframe name="contenido"></iframe>
     </div>
-    
-    
 
 </body>
 </html>
