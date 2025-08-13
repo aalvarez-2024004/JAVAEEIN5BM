@@ -51,7 +51,7 @@
                 <table class="tabla">
                     <thead>
                         <tr>
-                            <th>Código del Cliente</th>
+                            <th>Id Cliente</th>
                             <th>Nombre</th>
                             <th>Apellido</th>
                             <th>Correo</th>
