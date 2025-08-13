@@ -3,7 +3,10 @@
 * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
 */
 package Controlador;
+import Modelo.Empleado;
+import Modelo.EmpleadoDAO;
 import java.io.IOException;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -13,15 +16,12 @@ import javax.servlet.http.HttpServletResponse;
 * @author informatica
 */
 public class Controlador extends HttpServlet {
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+    
+    Empleado empleado = new Empleado();
+    EmpleadoDAO empleadoDao = new EmpleadoDAO();
+    int codEmpleado;
+    
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
         throws ServletException, IOException {
         
@@ -44,9 +44,45 @@ public class Controlador extends HttpServlet {
                 case "Producto":
                     request.getRequestDispatcher("producto.jsp").forward(request, response);
                     break;    
+                    
                 case "Empleado":
+                    switch (accion) {
+                        case "Listar":
+                            List listaEmpleados = empleadoDao.listar();
+                            request.setAttribute("empleados", listaEmpleados);
+                            break;
+                        case "Agregar":
+                            String nombreEmpleado = request.getParameter("txtNombreEmpleado");
+                            String apellidoEmpleado = request.getParameter("txtApellidoEmpleado");
+                            String direccionEmpleado = request.getParameter("txtDireccionEmpleado");
+                            String telefonoEmpleado = request.getParameter("txtTelefonoEmpleado");
+                            String emailEmpleado = request.getParameter("txtEmailEmpleado");
+                            String puestoEmpleado = request.getParameter("txtPuestoEmpleado");
+                            
+                            empleado.setNombreEmpleado(nombreEmpleado);
+                            empleado.setApellidoEmpleado(apellidoEmpleado);
+                            empleado.setDireccionEmpleado(direccionEmpleado);
+                            empleado.setTelefonoEmpleado(telefonoEmpleado);
+                            empleado.setEmailEmpleado(emailEmpleado);
+                            empleado.setPuestoEmpleado(puestoEmpleado);
+                            
+                            empleadoDao.agregar(empleado);
+                            request.getRequestDispatcher("Controlador?menu=Empleado&accion=Listar").forward(request, response);
+                            break;
+                        case "Editar":
+                            break;
+                        case "Actualizar":
+                            break;
+                        case "Eliminar":
+                            break;
+                        case "Buscar":
+                            break;
+                        default:
+                            throw new AssertionError();
+                        }
                     request.getRequestDispatcher("empleado.jsp").forward(request, response);
                     break;
+                    
                 case "Venta":
                     request.getRequestDispatcher("venta.jsp").forward(request, response);
                     break; 
@@ -74,6 +110,9 @@ public class Controlador extends HttpServlet {
                     throw new AssertionError();
             }
         }
+        
+        
+        
     }
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
 

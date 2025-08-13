@@ -309,6 +309,19 @@ button.btn-eliminar:hover {
   transform: translateY(-10px) translateZ(30px);
 }
 
+.table-responsive {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch; /* Para suavizar el scroll en dispositivos móviles */
+    margin-bottom: 20px;
+}
+
+.table-responsive table {
+    width: 100%;
+    min-width: 600px; /* Asegura que la tabla tenga un ancho mínimo */
+    border-collapse: collapse;
+}
+
 table {
   opacity: 0;
   animation: fadeIn 0.6s ease-out forwards 0.4s;

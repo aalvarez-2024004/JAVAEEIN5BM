@@ -79,8 +79,4 @@ public class Empleado {
         this.puestoEmpleado = puestoEmpleado;
     }
 
-    @Override
-    public String toString() {
-        return "Empleado{" + "codigoEmpleado=" + codigoEmpleado + ", nombreEmpleado=" + nombreEmpleado + ", apellidoEmpleado=" + apellidoEmpleado + ", direccionEmpleado=" + direccionEmpleado + ", telefonoEmpleado=" + telefonoEmpleado + ", emailEmpleado=" + emailEmpleado + ", puestoEmpleado=" + puestoEmpleado + '}';
-    }
 }

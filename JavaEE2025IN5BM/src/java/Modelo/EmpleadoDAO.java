@@ -4,6 +4,8 @@ import Config.Conexion;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
 public class EmpleadoDAO {
     Conexion cn = new Conexion();
@@ -40,30 +42,58 @@ public class EmpleadoDAO {
         return empleado; //Empleado encontrado
     }
     
-    //Metodo que permite hacer que se pueda registrar un nuevo empleado
-    public boolean agregar(Empleado empleado) {
+    //Metodo que permite hacer que se listen los empleados
+    public List listar(){
+        String sql ="{CALL sp_listarEmpleados()}";
+        List<Empleado> listaEmpleado = new ArrayList<>();
+        
+        try {
+            con = cn.Conexion();
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            
+            while (rs.next()) {
+                Empleado em = new Empleado();
+                
+                em.setCodigoEmpleado(rs.getInt(1));
+                em.setNombreEmpleado(rs.getString(2));
+                em.setApellidoEmpleado(rs.getString(3));
+                em.setDireccionEmpleado(rs.getString(4));
+                em.setTelefonoEmpleado(rs.getString(5));
+                em.setEmailEmpleado(rs.getString(6));
+                em.setPuestoEmpleado(rs.getString(7));
+                listaEmpleado.add(em);
+            }
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return listaEmpleado;
+    }
+    
+    //Metodo que permitira hacer que se pueda ingrsar un nuevo empleado
+    public int agregar(Empleado emp){
         //Llamar al procedimiento almacenado
         String sql = "{Call sp_agregarEmpleado(?,?,?,?,?,?)}";
+        
         try {
             //Conectar a la vase de datos para preprarar la consulta
             con = cn.Conexion();
             ps = con.prepareStatement(sql);
             
             //Los parametros del procedimiento
-            ps.setString(1, empleado.getNombreEmpleado());
-            ps.setString(2, empleado.getApellidoEmpleado());
-            ps.setString(3, empleado.getDireccionEmpleado());
-            ps.setString(4, empleado.getTelefonoEmpleado());
-            ps.setString(5, empleado.getEmailEmpleado());
-            ps.setString(6, empleado.getPuestoEmpleado());
+            ps.setString(1, emp.getNombreEmpleado());
+            ps.setString(2, emp.getApellidoEmpleado());
+            ps.setString(3, emp.getDireccionEmpleado());
+            ps.setString(4, emp.getTelefonoEmpleado());
+            ps.setString(5, emp.getEmailEmpleado());
+            ps.setString(6, emp.getPuestoEmpleado());
             
-            //Se ejecuta la consulta, en caso de que se inserten correctamente, se retorna true
-            int rows = ps.executeUpdate();
-            return rows > 0;
+            ps.executeUpdate();
         } catch (Exception e) {
-            System.out.println(e.getMessage());
-            return false;
-        } 
+            e.printStackTrace();
+        }
+        return resp;
     }
 
     

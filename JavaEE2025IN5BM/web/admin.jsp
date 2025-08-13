@@ -20,7 +20,7 @@
             <li><a href="Controlador?menu=Cliente" target="contenido">Clientes</a></li>
             <li><a href="Controlador?menu=Proveedor" target="contenido">Proveedores</a></li>
             <li><a href="Controlador?menu=Producto" target="contenido">Productos</a></li>
-            <li><a href="Controlador?menu=Empleado" target="contenido">Empleados</a></li>
+            <li><a href="Controlador?menu=Empleado&accion=Listar" target="contenido">Empleados</a></li>
             <li><a href="Controlador?menu=Venta" target="contenido">Ventas</a></li>
             <li><a href="Controlador?menu=detalleVenta" target="contenido">Detalle Ventas</a></li>
             <li><a href="Controlador?menu=Factura" target="contenido">Facturas</a></li>

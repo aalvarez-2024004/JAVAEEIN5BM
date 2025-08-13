@@ -1,9 +1,3 @@
-<%-- 
-    Document   : venta
-    Created on : 22/07/2025, 17:34:01
-    Author     : Titi
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="es">
@@ -15,30 +9,31 @@
 </head>
 <body>
     <nav>
+        <a class="logo">Essenza &amp; Co.</a>
     </nav>
-
     <div class="contenedor-principal">
         <div class="form-container">
             <h2>Gestión de Ventas</h2>
-            
+
             <form action="" method="post" class="formulario">
-                <input type="text" name="txtIdVenta" placeholder="ID de venta" required>
-                <input type="datetime-local" name="txtFecha" placeholder="Fecha" required>
-                <input type="text" name="txtTotal" placeholder="Total" required>
-                <input type="number" name="txtIdCliente" placeholder="ID Cliente" required>
-                <input type="number" name="txtIdEmpleado" placeholder="ID Empleado" required>
-                
+                <input type="text" id="idVenta" name="txtIdVenta" placeholder="ID de venta" required>
+                <input type="datetime-local" id="fecha" name="txtFecha" placeholder="Fecha" required>
+                <input type="text" id="total" name="txtTotal" placeholder="Total" required>
+                <input type="number" id="idCliente" name="txtIdCliente" placeholder="ID Cliente" required>
+                <input type="number" id="idEmpleado" name="txtIdEmpleado" placeholder="ID Empleado" required>
+
                 <div class="botones">
-                    <button type="submit" name="btnAgregar">Agregar</button>
-                    <button type="submit" name="btnActualizar">Actualizar</button>
-                    <button type="submit" name="btnBuscar">Buscar</button>
-                    <button type="submit" name="btnEliminar">Eliminar</button>
+                    <button type="submit" name="btnAgregar" class="agregar">Agregar</button>
+                    <button type="submit" name="btnActualizar" class="actualizar">Actualizar</button>
+                    <button type="submit" name="btnBuscar" class="buscar">Buscar</button>
+                    <button type="submit" name="btnEliminar" class="eliminar">Eliminar</button>
                 </div>
             </form>
-            
+            <div class="marca-interna">
+                Essenza &amp; Co.
+            </div>
         </div>
-
-        <div class="table-container">  
+        <div class="table-container">
             <table>
                 <thead>
                     <tr>
